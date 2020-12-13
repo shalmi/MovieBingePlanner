@@ -9,7 +9,7 @@
 	<title>Movie Day Planner</title>
 	<meta name="description" content="This is a description">
 	<meta name="author" content="Michael">
-	<link rel="stylesheet" href="css/styles.css?v=1.0">
+	<!-- <link rel="stylesheet" href="css/styles.css?v=1.0"> -->
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
@@ -31,6 +31,7 @@
 	
 	<div class="container">
 		<div>
+
 			<h1>Chosen Movies:</h1>
 
 			<table id="movieTable" class="table table-sm">
@@ -39,16 +40,11 @@
 					<th scope="col">#</th>
 					<th scope="col">Title</th>
 					<th scope="col">RunTime</th>
-					<th scope="col">Total RunTime</th>
+					<th scope="col">Start Time</th>
+					<th scope="col">End Time</th>
 				  </tr>
 				</thead>
 				<tbody id="movieTableBody">
-				  <tr>
-					<th scope="row">0</th>
-					<td>No Movie added yet</td>
-					<td></td>
-					<td></td>
-				  </tr>
 				</tbody>
 			  </table>
 		</div>
@@ -62,11 +58,19 @@
 			<li class="list-group-item" style="display:none">Fourth item</li>
 			<li class="list-group-item" style="display:none">Fifth item</li>
 		</ul>
+		<h1>Settings:</h1>
+		<h3>Break Time After Each Movie: <span id=breakTimeHtml>xxx</span>
+			<button type="button" class="btn btn-primary" onclick="breakTimeMinus()" >-</button>
+			<button type="button" class="btn btn-primary" onclick="breakTimePlus()" >+</button>
+		</h3>
+		<h3>Start Time: <span id=startTimeHtml>xxx</span>
+			<button type="button" class="btn btn-primary" onclick="startTimeMinus()" >-</button>
+			<button type="button" class="btn btn-primary" onclick="startTimePlus()" >+</button>
+		</h3>
 	</div>
 
 	<script src="js/themoviedb.js"></script>
 	<script src="js/main.js"></script>
-	<!-- <script src="js/themoviedb.js"></script> -->
 </body>
 
 </html>
