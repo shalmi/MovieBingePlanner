@@ -3,7 +3,7 @@
 // console.log(theMovieDb);
 var vids;
 var vidsChosen = [];
-var startTime = 0 * 60;
+var startTime = 9 * 60;
 var breakTime = 5;
 
 function addButton(i) {
