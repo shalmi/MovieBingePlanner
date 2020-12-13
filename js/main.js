@@ -3,11 +3,83 @@
 // console.log(theMovieDb);
 var vids;
 var vidsChosen = [];
-var startTime = 0 * 60;
+var startTime = 9 * 60;
 var breakTime = 5;
+var editModeEnabled = false;
+
+function array_move(arr, old_index, new_index) {
+    if (new_index >= arr.length) {
+        var k = new_index - arr.length + 1;
+        while (k--) {
+            arr.push(undefined);
+        }
+    }
+    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+    // return arr; // for testing
+};
 
 function addButton(i) {
     return '<button type="button" class="btn btn-primary" onclick="addClicked(' + i + ')" >Add Movie</button>   '
+}
+function removeMovieButton(i) {
+    if(editModeEnabled){
+        return '<button type="button" class="btn btn-warning" onclick="removeMovie(' + i + ')" ><i class="far fa-trash-alt"></i></button>   '
+    }
+    else{
+        return ""
+    }
+}
+function swapMovieUpButton(i) {
+    if(editModeEnabled){
+
+        var disabled = ""
+        if (i == 0 ){
+            disabled = "disabled";
+        }
+        return '<button type="button" '+disabled+' class="btn btn-primary" onclick="swapUp(' + i + ')" ><i class="fas fa-level-up-alt"></i></button>   '
+    }
+    else{
+        return ""
+    }
+
+}
+function swapMovieDownButton(i) {
+    if(editModeEnabled){
+        var disabled = ""
+        if (i == vidsChosen.length-1){
+            disabled = "disabled";
+        }
+        return '<button type="button" '+disabled+' class="btn btn-primary" onclick="swapDown(' + i + ')" ><i class="fas fa-level-down-alt"></i></i></button>   '
+    }
+    else{
+        return ""
+    }
+}
+$(function() {
+    $('#toggle-edit').change(function() {
+        editModeEnabled = $(this).prop('checked');
+        updateChosenList();
+        if (editModeEnabled){
+            $("#stuffUnderSettings")[0].style.display = "block";
+        }
+        else{
+            $("#stuffUnderSettings")[0].style.display = "none";
+        }
+    //   $('#console-event').html('Toggle: ' + $(this).prop('checked'))
+    })
+  })
+
+function swapUp(i){
+    array_move(vidsChosen,i,i-1);
+    updateChosenList();
+}
+function swapDown(i){
+    array_move(vidsChosen,i,i+1);
+    updateChosenList();
+}
+function removeMovie(i){
+    vidsChosen.splice(i,1);
+    updateChosenList();
 }
 
 function startTimePlus(){
@@ -75,7 +147,7 @@ function updateChosenList() {
         var STARTTIME = row.insertCell(3);
         var STOPTIME = row.insertCell(4);
         NUM.innerHTML = index,
-        TITLE.innerHTML = e.title,
+        TITLE.innerHTML = e.title+ "  " + removeMovieButton(index)+swapMovieUpButton(index)+swapMovieDownButton(index),
         RUNTIME.innerHTML = time_convert(e.runtime);
         STARTTIME.innerHTML = time_convert(runningStartTime)
         STOPTIME.innerHTML = time_convert(runningStartTime+e.runtime);

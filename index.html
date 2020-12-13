@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Movie Day Planner</title>
@@ -18,6 +18,8 @@
 
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 </head>
 
 <body>
@@ -28,25 +30,24 @@
 		<h1>Movie Day Planner</h1>
 		<!-- <p>This is some text.</p> -->
 	</div>
-	
+
 	<div class="container">
 		<div>
 
-			<h1>Chosen Movies:</h1>
-
+			<h1>Chosen Movies: </h1>
 			<table id="movieTable" class="table table-sm">
 				<thead>
-				  <tr>
-					<th scope="col">#</th>
-					<th scope="col">Title</th>
-					<th scope="col">RunTime</th>
-					<th scope="col">Start Time</th>
-					<th scope="col">End Time</th>
-				  </tr>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Title</th>
+						<th scope="col">RunTime</th>
+						<th scope="col">Start Time</th>
+						<th scope="col">End Time</th>
+					</tr>
 				</thead>
 				<tbody id="movieTableBody">
 				</tbody>
-			  </table>
+			</table>
 		</div>
 		<h1>Add Movies:</h1>
 		<input class="form-control" id="listSearch" type="text" placeholder="Type something to search list items">
@@ -58,19 +59,22 @@
 			<li class="list-group-item" style="display:none">Fourth item</li>
 			<li class="list-group-item" style="display:none">Fifth item</li>
 		</ul>
-		<h1>Settings:</h1>
-		<h3>Break Time After Each Movie: <span id=breakTimeHtml>xxx</span>
-			<button type="button" class="btn btn-primary" onclick="breakTimeMinus()" >-</button>
-			<button type="button" class="btn btn-primary" onclick="breakTimePlus()" >+</button>
-		</h3>
-		<h3>Start Time: <span id=startTimeHtml>xxx</span>
-			<button type="button" class="btn btn-primary" onclick="startTimeMinus()" >-</button>
-			<button type="button" class="btn btn-primary" onclick="startTimePlus()" >+</button>
-		</h3>
+		<h1>Settings: <input type="checkbox" id="toggle-edit" onclick="toggleEdit()" data-toggle="toggle"></h1>
+		<div id="stuffUnderSettings">
+			<h3>Break Time After Each Movie: <span id=breakTimeHtml>xxx</span>
+				<button type="button" class="btn btn-primary" onclick="breakTimeMinus()">-</button>
+				<button type="button" class="btn btn-primary" onclick="breakTimePlus()">+</button>
+			</h3>
+			<h3>Start Time: <span id=startTimeHtml>xxx</span>
+				<button type="button" class="btn btn-primary" onclick="startTimeMinus()">-</button>
+				<button type="button" class="btn btn-primary" onclick="startTimePlus()">+</button>
+			</h3>
+		</div>
 	</div>
 
 	<script src="js/themoviedb.js"></script>
 	<script src="js/main.js"></script>
+	<script src="https://kit.fontawesome.com/eb37fd6dcc.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
